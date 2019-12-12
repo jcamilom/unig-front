@@ -25,7 +25,14 @@ export class AddTeacherComponent implements OnInit {
   }
 
   public onSubmit() {
-    this.teacherAdded.emit(this.teacherForm.value);
+    const selectedTeacher = this.teacherForm.value;
+    this.teachers.forEach((teacher) => {
+      if (+teacher.id === +selectedTeacher.name) {
+        selectedTeacher.id = teacher.id;
+        selectedTeacher.name = teacher.user.name;
+      }
+    });
+    this.teacherAdded.emit(selectedTeacher);
   }
 
 }
