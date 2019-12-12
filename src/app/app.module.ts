@@ -6,11 +6,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CreateProjectComponent } from './components/project/create-project/create-project.component';
+import { AddTeacherComponent } from './components/project/add-teacher/add-teacher.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CreateProjectComponent,
+    AddTeacherComponent,
   ],
   imports: [
     BrowserModule,

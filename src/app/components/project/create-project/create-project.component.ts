@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { TeacherService } from '../../../services/teacher.service';
 
 @Component({
   selector: 'app-create-project',
@@ -12,9 +13,11 @@ export class CreateProjectComponent implements OnInit {
   public projectForm: FormGroup;
   public user: any;
   private token: string;
+  public teachers: any[];
 
   constructor(
     private readonly authService: AuthService,
+    private readonly teacherService: TeacherService,
     private readonly fb: FormBuilder
   ) {}
 
@@ -23,6 +26,13 @@ export class CreateProjectComponent implements OnInit {
       (resp) => {
         this.user = resp.user;
         this.token = resp.token;
+        this.teacherService.getTeachers(this.token).subscribe(
+          (res) => {
+            this.teachers = res;
+          }, (err) => {
+            console.log(err);
+          }
+        );
       }, (err) => {
         console.log(err);
       }
