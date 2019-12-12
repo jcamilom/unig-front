@@ -1,6 +1,35 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm">Hola</div>
-    <div class="col-sm">mundo</div>
+    <div class="col-sm">
+      Usuario: <span *ngIf="user">{{ user.name }}</span>
+    </div>
   </div>
+  <div>
+    <h2>Crear proyecto</h2>
+  </div>
+  <form [formGroup]="projectForm">
+    <div class="row">
+      <div class="col-sm">
+        <div class="form-group">
+          <label>
+            Nombre Proyecto:
+            <input type=" text" formControlName="name">
+          </label>
+        </div>
+      </div>
+      <div class="col-sm">
+        <div class="form-group">
+          <label for="status">Estado: </label>
+          <select formControlName="status" id="status">
+            <option [value]="'active'">
+              Activo
+            </option>
+            <option [value]="'inactive'">
+              Inactivo
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>
