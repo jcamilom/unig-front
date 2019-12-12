@@ -1,4 +1,4 @@
-<form [formGroup]="teacherForm">
+<form [formGroup]="teacherForm" (ngSubmit)="onSubmit()">
   <div class="row">
     <div class="col-sm">
       <div class="form-group">
@@ -14,7 +14,7 @@
       <div class="form-group">
         <label for="role">Rol: </label>
         <select formControlName="role" id="role">
-          <option [value]="mainResearcher">
+          <option [value]="'mainResearcher'">
             Investigador principal
           </option>
           <option [value]="'secondaryResearcher'">
@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="col-sm">
-      <button type="button" (click)="addTeacher()">Añadir docente</button>
+      <button type="submit">Añadir docente</button>
     </div>
   </div>
 </form>

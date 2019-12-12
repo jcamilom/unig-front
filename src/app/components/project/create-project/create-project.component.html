@@ -31,9 +31,10 @@
         </div>
       </div>
     </div>
-    <app-add-teacher [teachers]="teachers"></app-add-teacher>
-    <div class="row">
-      <span>Docente en proyecto</span>
+    <app-add-teacher [teachers]="teachers" (teacherAdded)="onTeacherAdded($event)"></app-add-teacher>
+    <h2>Docente en proyecto</h2>
+    <div class="row" *ngFor="let teacher of projectTeachers">
+      {{ teacher | json }}
     </div>
   </form>
 </div>

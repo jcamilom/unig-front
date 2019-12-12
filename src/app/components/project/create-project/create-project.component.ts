@@ -14,6 +14,7 @@ export class CreateProjectComponent implements OnInit {
   public user: any;
   private token: string;
   public teachers: any[];
+  public projectTeachers: any[] = [];
 
   constructor(
     private readonly authService: AuthService,
@@ -41,6 +42,10 @@ export class CreateProjectComponent implements OnInit {
       name: [''],
       status: ['active']
     });
+  }
+
+  public onTeacherAdded($event) {
+    this.projectTeachers.push($event);
   }
 
 }
