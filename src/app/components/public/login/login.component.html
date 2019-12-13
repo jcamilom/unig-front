@@ -37,12 +37,8 @@
         </div>
         <hr />
 
-        <div class="card-footer alert alert-success col-md-12 mt-3" *ngIf="status == 'success'">
-          Usuario Identificado Correctamente
-        </div>
-
-        <div class="card-footer alert alert-danger col-md-12 mt-3" *ngIf="status == 'error'">
-          ups! Ha ocurrido un error. Verifica tu correo y contraseña
+        <div class="card-footer alert alert-danger col-md-12 mt-3" *ngIf="loginFailed">
+          {{ loginErrorMessage }}
         </div>
       </div>
     </div>

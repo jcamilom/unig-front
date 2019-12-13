@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { DataService } from 'src/app/services/data.service';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,8 @@ export class LoginComponent implements OnInit {
 
   public pageTitle = 'Iniciar sesion';
   public loginForm: FormGroup;
+  public loginFailed: boolean;
+  public loginErrorMessage: string;
 
   constructor(
     private readonly fb: FormBuilder,
@@ -35,8 +38,13 @@ export class LoginComponent implements OnInit {
         this.dataService.user = resp.user;
         this.dataService.token = resp.token;
         this.router.navigate(['/dashboard']);
-      }, (err) => {
-        console.log(err);
+      }, (err: HttpErrorResponse) => {
+        this.loginFailed = true;
+        if (err.status === 404) {
+          this.loginErrorMessage = 'Credenciales inválidas. Intenta nuevamente';
+        } else {
+          this.loginErrorMessage = 'Ha ocurrido un error. Intenta nuevamente';
+        }
       }
     );
   }
