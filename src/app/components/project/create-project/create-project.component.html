@@ -31,7 +31,10 @@
         </div>
       </div>
     </div>
-    <app-add-teacher [teachers]="teachers" (teacherAdded)="onTeacherAdded($event)"></app-add-teacher>
-    <app-teacher-list [teachers]="projectTeachers"></app-teacher-list>
   </form>
+  <app-add-teacher [teachers]="teachers" (teacherAdded)="onTeacherAdded($event)"></app-add-teacher>
+  <app-teacher-list [teachers]="projectTeachers"></app-teacher-list>
+  <div class="row">
+    <button type="button" (click)="onSubmit()" [disabled]="!projectForm.valid">Crear proyecto</button>
+  </div>
 </div>

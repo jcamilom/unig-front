@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { TeacherService } from '../../../services/teacher.service';
+import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
   selector: 'app-create-project',
@@ -19,6 +20,7 @@ export class CreateProjectComponent implements OnInit {
   constructor(
     private readonly authService: AuthService,
     private readonly teacherService: TeacherService,
+    private readonly projectService: ProjectService,
     private readonly fb: FormBuilder
   ) {}
 
@@ -46,6 +48,22 @@ export class CreateProjectComponent implements OnInit {
 
   public onTeacherAdded($event) {
     this.projectTeachers.push($event);
+  }
+
+  public onSubmit() {
+    const project = this.projectForm.value;
+    if (project.status === 'active') {
+      project.status = true;
+    } else {
+      project.status = false;
+    }
+    this.projectService.createProject(project, this.token).subscribe(
+      (resp) => {
+        console.log(resp);
+      }, (err) => {
+        console.log(err);
+      }
+    )
   }
 
 }
