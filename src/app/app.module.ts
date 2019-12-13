@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { CreateProjectComponent } from './components/project/create-project/create-project.component';
 import { AddTeacherComponent } from './components/project/add-teacher/add-teacher.component';
 import { TeacherListComponent } from './components/project/teacher-list/teacher-list.component';
+import { HomeComponent } from './components/public/home/home.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { TeacherListComponent } from './components/project/teacher-list/teacher-
     CreateProjectComponent,
     AddTeacherComponent,
     TeacherListComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
