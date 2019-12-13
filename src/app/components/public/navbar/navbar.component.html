@@ -1,0 +1,65 @@
+<div class="">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand " style="color:aliceblue" [routerLink]="['/inicio']">Gesproy</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
+        aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" [routerLink]="['/home']"><i class="fas fa-home" style="color:darkorange"></i> Home
+              <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item" *ngIf="identity">
+            <a class="nav-link" [routerLink]="['/users']"><i class="fas fa-users" style="color:darkorange"></i>
+              Usuario</a>
+          </li>
+          <li class="nav-item" *ngIf="identity">
+            <a class="nav-link" [routerLink]="['/home']"><i class="fas fa-user-graduate" style="color:darkorange"></i>
+              Estudiante</a>
+          </li>
+          <li class="nav-item" *ngIf="identity">
+            <a class="nav-link" [routerLink]="['/home']"><i class="fas fa-address-book" style="color:darkorange"></i>
+              Roles</a>
+          </li>
+
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+
+
+          <li class="nav-item" *ngIf="!identity">
+            <a class="nav-link" [routerLink]="['/signup']"><i class="fas fa-address-card" style="color:darkorange"></i>
+              Registrar</a>
+          </li>
+
+          <li class="nav-item" *ngIf="!identity">
+            <a class="nav-link" [routerLink]="['/login']"><i class="fas fa-user-tie" style="color:darkorange"></i>
+              Iniciar Sesión</a>
+          </li>
+
+          <li class="nav-item dropdown" *ngIf="identity">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+              aria-expanded="false">{{identity.name + ' ' + identity.surname + ' '}}</a>
+            <div class="dropdown-menu" x-placement="bottom-start"
+              style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">
+              <a class="dropdown-item" href="#">Panel de Usuario</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" [routerLink]="['/perfil', identity.id]">Mi perfil</a>
+              <a class="dropdown-item" [routerLink]="['/ajustes']">Ajustes</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item pointer" (click)="logout()">Cerrar Sesión</a>
+            </div>
+          </li>
+
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+
+</div>

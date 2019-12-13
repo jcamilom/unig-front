@@ -9,6 +9,8 @@ import { CreateProjectComponent } from './components/project/create-project/crea
 import { AddTeacherComponent } from './components/project/add-teacher/add-teacher.component';
 import { TeacherListComponent } from './components/project/teacher-list/teacher-list.component';
 import { HomeComponent } from './components/public/home/home.component';
+import { NavbarComponent } from './components/public/navbar/navbar.component';
+import { LoginComponent } from './components/public/login/login.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { HomeComponent } from './components/public/home/home.component';
     AddTeacherComponent,
     TeacherListComponent,
     HomeComponent,
+    NavbarComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
