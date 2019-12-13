@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { DataService } from 'src/app/services/data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private readonly fb: FormBuilder,
     private readonly authService: AuthService,
-    private readonly dataService: DataService
+    private readonly dataService: DataService,
+    private readonly router: Router
   ) { }
 
   ngOnInit() {
@@ -32,7 +34,7 @@ export class LoginComponent implements OnInit {
       (resp) => {
         this.dataService.user = resp.user;
         this.dataService.token = resp.token;
-        console.log(resp)
+        this.router.navigate(['/dashboard']);
       }, (err) => {
         console.log(err);
       }

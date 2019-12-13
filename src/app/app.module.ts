@@ -11,6 +11,7 @@ import { TeacherListComponent } from './components/project/teacher-list/teacher-
 import { HomeComponent } from './components/public/home/home.component';
 import { NavbarComponent } from './components/public/navbar/navbar.component';
 import { LoginComponent } from './components/public/login/login.component';
+import { DashboardComponent } from './components/private/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { LoginComponent } from './components/public/login/login.component';
     HomeComponent,
     NavbarComponent,
     LoginComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
