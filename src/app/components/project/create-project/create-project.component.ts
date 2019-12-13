@@ -58,12 +58,22 @@ export class CreateProjectComponent implements OnInit {
       project.status = false;
     }
     this.projectService.createProject(project, this.token).subscribe(
-      (resp) => {
-        console.log(resp);
+      (project) => {
+        const teachersIds = [];
+        this.projectTeachers.forEach((teacher) => {
+          teachersIds.push(+teacher.id);
+        });
+        this.projectService.addTeachers(project.id, teachersIds, this.token).subscribe(
+          (resp) => {
+            console.log(resp);
+          }, (err) => {
+            console.log(err);
+          }
+        )
       }, (err) => {
         console.log(err);
       }
-    )
+    );
   }
 
 }

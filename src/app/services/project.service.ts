@@ -21,4 +21,18 @@ export class ProjectService {
     return this.http.post(`${apiUrl}/projects`, project, options);
   }
 
+  public addTeachers(projectId: string, teachersIds: number[], token: string): Observable<any> {
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      })
+    };
+    const body = {
+      type: 'add',
+      ids: teachersIds
+    };
+    return this.http.patch(`${apiUrl}/projects/${projectId}/teachers`, body, options);
+  }
+
 }
