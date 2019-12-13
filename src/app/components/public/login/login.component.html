@@ -1,3 +1,50 @@
-<p>
-  login works!
-</p>
+<div class="container-fluid mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card text-white bg-info">
+        <h5 class="card-header text-center">
+          {{ pageTitle }}
+        </h5>
+        <div class="card-body">
+          <form col-md-5 ml-0 pl-0 [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="email">Direccion de Correo</label>
+              <input type="email" class="form-control" name="email" placeholder="Ingrese su correo"
+                placeholder="Ingrese su email" formControlName="email" />
+              <!-- <small *ngIf="!email.valid && email.touched" class="form-text invalid-feedback d-block">
+                  Direccion de correo no valida
+                </small> -->
+            </div>
+            <div class="form-group">
+              <label for="password">Contraseña</label>
+              <i class="fas fa-exclamation-circle">
+                La contraseña debe tener almenos un numero, un caracter en mayuscula, un caracter en minuscula y 6
+                digitos como minimo
+              </i>
+              <input type="password" class="form-control" name="password" placeholder="Ingrese su contraseña"
+                placeholder="Ingrese su contraseña" formControlName="password" />
+              <!-- <small *ngIf="!password.valid && password.touched" class="form-text invalid-feedback d-block">
+                  Contraseña no valida
+                </small> -->
+            </div>
+            <button type="submit" class="btn btn-primary regular-button" [disabled]="loginForm.invalid">
+              Iniciar Sesion
+            </button>
+          </form>
+        </div>
+        <div class="card-footer">
+          Identificate Para Continuar
+        </div>
+        <hr />
+
+        <div class="card-footer alert alert-success col-md-12 mt-3" *ngIf="status == 'success'">
+          Usuario Identificado Correctamente
+        </div>
+
+        <div class="card-footer alert alert-danger col-md-12 mt-3" *ngIf="status == 'error'">
+          ups! Ha ocurrido un error. Verifica tu correo y contraseña
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
