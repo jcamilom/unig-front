@@ -18,32 +18,23 @@ export class CreateProjectComponent implements OnInit {
   public projectTeachers: any[] = [];
 
   constructor(
-    private readonly authService: AuthService,
     private readonly teacherService: TeacherService,
     private readonly projectService: ProjectService,
     private readonly fb: FormBuilder
   ) {}
 
   ngOnInit() {
-    this.authService.login('horacio@mail.com', 'pass1234').subscribe(
-      (resp) => {
-        this.user = resp.user;
-        this.token = resp.token;
-        this.teacherService.getTeachers(this.token).subscribe(
-          (res) => {
-            this.teachers = res;
-          }, (err) => {
-            console.log(err);
-          }
-        );
-      }, (err) => {
-        console.log(err);
-      }
-    );
     this.projectForm = this.fb.group({
       name: [''],
       status: ['active']
     });
+    this.teacherService.getTeachers(this.token).subscribe(
+      (res) => {
+        this.teachers = res;
+      }, (err) => {
+        console.log(err);
+      }
+    );
   }
 
   public onTeacherAdded($event) {
