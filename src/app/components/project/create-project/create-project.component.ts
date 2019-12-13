@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../../services/auth.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { TeacherService } from '../../../services/teacher.service';
 import { ProjectService } from 'src/app/services/project.service';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-create-project',
@@ -13,13 +13,13 @@ export class CreateProjectComponent implements OnInit {
 
   public projectForm: FormGroup;
   public user: any;
-  private token: string;
   public teachers: any[];
   public projectTeachers: any[] = [];
 
   constructor(
     private readonly teacherService: TeacherService,
     private readonly projectService: ProjectService,
+    private readonly dataService: DataService,
     private readonly fb: FormBuilder
   ) {}
 
@@ -28,7 +28,8 @@ export class CreateProjectComponent implements OnInit {
       name: [''],
       status: ['active']
     });
-    this.teacherService.getTeachers(this.token).subscribe(
+    this.user = this.dataService.user;
+    this.teacherService.getTeachers().subscribe(
       (res) => {
         this.teachers = res;
       }, (err) => {
@@ -48,13 +49,13 @@ export class CreateProjectComponent implements OnInit {
     } else {
       project.status = false;
     }
-    this.projectService.createProject(project, this.token).subscribe(
+    this.projectService.createProject(project).subscribe(
       (project) => {
         const teachersIds = [];
         this.projectTeachers.forEach((teacher) => {
           teachersIds.push(+teacher.id);
         });
-        this.projectService.addTeachers(project.id, teachersIds, this.token).subscribe(
+        this.projectService.addTeachers(project.id, teachersIds).subscribe(
           (resp) => {
             console.log(resp);
           }, (err) => {

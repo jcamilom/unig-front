@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { DataService } from './data.service';
 
 const apiUrl = 'http://localhost:3000';
 
@@ -9,13 +10,13 @@ const apiUrl = 'http://localhost:3000';
 })
 export class TeacherService {
 
-  constructor(private readonly http: HttpClient) { }
+  constructor(private readonly http: HttpClient, private readonly dataService: DataService) { }
 
-  public getTeachers(token: string): Observable<any> {
+  public getTeachers(): Observable<any> {
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${this.dataService.token}`
       })
     };
     return this.http.get(`${apiUrl}/teachers`, options);
